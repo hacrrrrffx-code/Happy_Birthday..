@@ -37,32 +37,23 @@
 </head>
 <body>
     <h1>Surprise is opening in...</h1>
-    <div id="timer">Loading...</div>
+    <div id="timer">10</div>
 
     <script>
-        // Target date: 14 September 2026 raat 12:00 baje
-        const targetDate = new Date("September 14, 2026 00:00:00").getTime();
+        // Yahan se seconds adjust kar sakte hain (abhi 10 sec hai)
+        let timeLeft = 10; 
+        const timerElement = document.getElementById("timer");
 
         const countdown = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+            timeLeft--;
+            timerElement.innerText = timeLeft;
 
-            if (distance <= 0) {
+            if (timeLeft <= 0) {
                 clearInterval(countdown);
-                // Raat 12 bajte hi bina click kiye main surprise open ho jayega
-                window.location.href = 'main.html'; 
-            } else {
-                // Time calculations for hours, minutes and seconds
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Display formatting
-                document.getElementById("timer").innerText = 
-                    `${hours}h ${minutes}m ${seconds}s`;
+                // Timer 0 hote hi purana project auto-open ho jayega
+                window.location.href = "main.html"; 
             }
         }, 1000);
     </script>
-
 </body>
 </html>
