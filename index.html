@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Loading...</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fce4ec;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #d81b60;
+        }
+        #timer {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ad1457;
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Surprise is opening in...</h1>
+    <div id="timer">Loading...</div>
+
+    <script>
+        // Target date: 14 September 2026 raat 12:00 baje
+        const targetDate = new Date("September 14, 2026 00:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                clearInterval(countdown);
+                // Raat 12 bajte hi bina click kiye main surprise open ho jayega
+                window.location.href = 'main.html'; 
+            } else {
+                // Time calculations for hours, minutes and seconds
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display formatting
+                document.getElementById("timer").innerText = 
+                    `${hours}h ${minutes}m ${seconds}s`;
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
